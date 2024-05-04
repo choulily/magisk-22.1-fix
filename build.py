@@ -255,6 +255,7 @@ def binary_dump(src, out, var_name):
 def run_ndk_build(flags):
     os.chdir('native')
     proc = system(f'{ndk_build} {base_flags} {flags} -j{cpu_count}')
+    print('[DEBUG]',proc)
     if proc.returncode != 0:
         error('Build binary failed!')
         # i dont know what is going on with this, it just fails.
