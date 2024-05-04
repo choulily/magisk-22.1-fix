@@ -75,8 +75,15 @@ jobs:
         if: steps.ndk-cache.outputs.cache-hit != 'true'
         run: python build.py ndk
 
-      - name: Build release
+      - name: Build release (Windows)
+        if: runner.os == 'Windows'
         run: python build.py -vr all
+
+      - name: Build release (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          chmod +x ./gradlew
+          python build.py -vr all
 
       - name: Build debug
         run: python build.py -v all
