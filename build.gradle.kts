@@ -18,10 +18,10 @@ buildscript {
     extra["vNav"] = vNav
 
     dependencies {
-//        classpath("com.android.tools.build:gradle:4.1.3")
-        classpath("com.android.tools.build:gradle:8.4.0")
-//        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.31")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.0-RC")
+        classpath("com.android.tools.build:gradle:4.1.3")
+//        classpath("com.android.tools.build:gradle:8.4.0")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.31")
+//        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.0-RC")
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${vNav}")
 
         // NOTE: Do not place your application dependencies here; they belong
