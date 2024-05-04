@@ -12,7 +12,8 @@ import platform
 import urllib.request
 import os.path as op
 import stat
-from distutils.dir_util import copy_tree
+import shutil
+# from distutils.dir_util import copy_tree #distutill is deprecated
 
 
 def error(str):
@@ -438,7 +439,7 @@ def setup_ndk(args):
                 continue
             src_dir = op.join('tools', 'ndk-bins', api, arch)
             rm(op.join(src_dir, '.DS_Store'))
-            for path in copy_tree(src_dir, lib_dir):
+            for path in shutil.copy_tree(src_dir, lib_dir):
                 vprint(f'Replaced {path}')
 
 
