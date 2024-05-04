@@ -439,7 +439,7 @@ def setup_ndk(args):
                 continue
             src_dir = op.join('tools', 'ndk-bins', api, arch)
             rm(op.join(src_dir, '.DS_Store'))
-            for path in shutil.copy_tree(src_dir, lib_dir):
+            for path in shutil.copytree(src_dir, lib_dir):
                 vprint(f'Replaced {path}')
 
 
