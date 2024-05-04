@@ -2,6 +2,9 @@
 
 [![Downloads](https://img.shields.io/badge/dynamic/json?color=green&label=Downloads&query=totalString&url=https%3A%2F%2Fraw.githubusercontent.com%2Ftopjohnwu%2Fmagisk-files%2Fcount%2Fcount.json&cacheSeconds=1800)](https://raw.githubusercontent.com/topjohnwu/magisk-files/count/count.json)
 
+## About this fork
+Magisk-v22.1 is th latest version that support android 4. But, it have some bugs that cause "signature not invalid" when install on some samsung devices. This fork attempt to fix these bugs and get magisk working on these devices.
+
 ## Introduction
 
 Magisk is a suite of open source tools for customizing Android, supporting devices higher than Android 4.2. It covers fundamental parts of Android customization: root, boot scripts, SELinux patches, AVB2.0 / dm-verity / forceencrypt removals etc.
