@@ -257,6 +257,8 @@ def run_ndk_build(flags):
     proc = system(f'{ndk_build} {base_flags} {flags} -j{cpu_count}')
     if proc.returncode != 0:
         error('Build binary failed!')
+        # i dont know what is going on with this, it just fails.
+        # add this line also trggers the actions.
     os.chdir('..')
     collect_binary()
 
