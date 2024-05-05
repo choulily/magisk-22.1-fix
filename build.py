@@ -70,6 +70,7 @@ gradlew = op.join('.', 'gradlew' + ('.bat' if is_windows else ''))
 # Global vars
 config = {}
 STDOUT = None
+STDERR = None
 build_tools = None
 
 
@@ -126,7 +127,7 @@ def execv(cmd):
 
 
 def system(cmd):
-    return subprocess.run(cmd, shell=True, stdout=STDOUT)
+    return subprocess.run(cmd, shell=True, stdout=STDOUT, stderr=STDERR)
 
 
 def cmd_out(cmd):
@@ -256,6 +257,8 @@ def run_ndk_build(flags):
     os.chdir('native')
     proc = system(f'{ndk_build} {base_flags} {flags} -j{cpu_count} V=1')
     print('[DEBUG]',proc)
+    print('[DEBUG][STDOUT]',STDOUT)
+    print('[DEBUG][STDERR]',STDERR)
     if proc.returncode != 0:
         error('Build binary failed!')
         # i dont know what is going on with this, it just fails.
