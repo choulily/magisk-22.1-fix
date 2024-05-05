@@ -253,19 +253,41 @@ def binary_dump(src, out, var_name):
     out.flush()
 
 
-def run_ndk_build(flags):
-    os.chdir('native')
-    proc = system(f'{ndk_build} {base_flags} {flags} -j{cpu_count} V=1')
-    print('[DEBUG]',proc)
-    print('[DEBUG][STDOUT]',STDOUT)
-    print('[DEBUG][STDERR]',STDERR)
-    print('[DEBUG][CMDOUT]',cmd_out(f'{ndk_build} {base_flags} {flags} -j{cpu_count} V=1'))
-    if proc.returncode != 0:
-        error('Build binary failed!')
-        # i dont know what is going on with this, it just fails.
-        # add this line also trggers the actions.
-    os.chdir('..')
-    collect_binary()
+# def run_ndk_build(flags):
+#     os.chdir('native')
+#     proc = system(f'{ndk_build} {base_flags} {flags} -j{cpu_count} V=1')
+#     print('[DEBUG]',proc)
+#     print('[DEBUG][STDOUT]',STDOUT)
+#     print('[DEBUG][STDERR]',STDERR)
+#     print('[DEBUG][CMDOUT]',cmd_out(f'{ndk_build} {base_flags} {flags} -j{cpu_count} V=1'))
+#     if proc.returncode != 0:
+#         error('Build binary failed!')
+#         # i dont know what is going on with this, it just fails.
+#         # add this line also trggers the actions.
+#     os.chdir('..')
+#     collect_binary()
+def run_ndk_build(flags):  
+    original_dir = os.getcwd()   
+    os.chdir('native')  
+      
+    
+    try:  
+        
+        result = subprocess.run([ndk_build, base_flags, flags, f'-j{cpu_count}', 'V=1'],   
+                                stdout=subprocess.PIPE, stderr=subprocess.PIPE,   
+                                check=True, universal_newlines=True)  
+        
+        print('[DEBUG] STDOUT:', result.stdout)  
+        print('[DEBUG] STDERR:', result.stderr)  
+    except subprocess.CalledProcessError as e:  
+        
+        print(f'[ERROR] ndk-build failed with error: {e}')  
+        print(f'[ERROR] STDERR: {e.stderr}')  
+        error('Build binary failed!')  
+        sys.exit(1)  
+      
+    os.chdir(original_dir)  
+    collect_binary()  
 
 
 def dump_bin_headers():
