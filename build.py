@@ -259,6 +259,7 @@ def run_ndk_build(flags):
     print('[DEBUG]',proc)
     print('[DEBUG][STDOUT]',STDOUT)
     print('[DEBUG][STDERR]',STDERR)
+    print('[DEBUG][CMDOUT]',cmd_out(f'{ndk_build} {base_flags} {flags} -j{cpu_count} V=1'))
     if proc.returncode != 0:
         error('Build binary failed!')
         # i dont know what is going on with this, it just fails.
